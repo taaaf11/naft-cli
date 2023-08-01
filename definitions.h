@@ -2,6 +2,8 @@
 
 #define make_true(x)        x = 1
 
+typedef int flag;
+
 void
 print_range (FILE *fp, int starting_line_number, int required_number_of_lines)
 {
