@@ -1,10 +1,13 @@
 #include <stdio.h>
-#include <stdbool.h>
+
+#define make_true(x)        x = 1
 
 void
-print_n_after (FILE *fp, int starting_line_number, int ending_line_number)
+print_range (FILE *fp, int starting_line_number, int required_number_of_lines)
 {
-    int line_idx = 0;
+    int line_idx = 0,
+        ending_line_number = starting_line_number + required_number_of_lines - 2;
+
     char character;
 
     while ((character = fgetc(fp)) != EOF)
