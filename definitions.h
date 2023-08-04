@@ -2,6 +2,7 @@
 
 #define make_true(x)        x = 1
 #define is_newln(c)         (c == '\n')
+#define trail_ln(y)         (y == 1) ? putchar('\n') : 0
 
 typedef unsigned int flag;
 

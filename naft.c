@@ -1,15 +1,16 @@
 #include "definitions.h"
+#include "usage.h"
 
-#include <stdlib.h>
 #include <getopt.h>
 
 
 static flag 
 		s_switch = 0,
 		r_switch = 0,
-		i_switch = 0,
 		a_switch = 0,
 		o_switch = 0,
+		i_switch = 0,
+		n_switch = 0,
 		ask_help = 0;
 	
 
@@ -19,6 +20,7 @@ struct option longoptions[] = {
 	{"all-after", required_argument, 0, 'a'},
 	{"just-one", required_argument, 0, 'o'},
 	{"from-stdin", no_argument, 0, 'i'},
+	{"no-newline", no_argument, 0, 'n'},
 	{"help", no_argument, 0, 'h'},
 	{0, 0, 0, 0}
 };
@@ -34,7 +36,7 @@ main (int argc, char **argv)
 		range_required_lines,
 		line_start_a_o;
 
-	while ((optc = getopt_long(argc, argv, "s:r:ia:o:h", longoptions, &optidx)) != -1)
+	while ((optc = getopt_long(argc, argv, "s:r:a:o:inh", longoptions, &optidx)) != -1)
 	{
 		switch (optc)
 		{
@@ -48,10 +50,6 @@ main (int argc, char **argv)
 				range_required_lines = atoi(optarg);
 				break;
 			
-			case 'i':
-			    make_true(i_switch);
-				break;
-			
 			case 'a':
 			    make_true(a_switch);
 				line_start_a_o = atoi(optarg);
@@ -62,12 +60,20 @@ main (int argc, char **argv)
 				line_start_a_o = atoi(optarg);
 				break;
 			
+			case 'i':
+			    make_true(i_switch);
+				break;
+			
+			case 'n':
+			    make_true(n_switch);
+				break;
+			
 			case 'h':
 			    make_true(ask_help);
 				break;
 		}
 	}
 
-	// if (ask_help)
-	//    print_usage();
+	if (ask_help)
+	    print_usage(0);
 }
