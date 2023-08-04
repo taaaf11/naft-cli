@@ -9,7 +9,8 @@ static flag
 		r_switch = 0,
 		i_switch = 0,
 		a_switch = 0,
-		o_switch = 0;
+		o_switch = 0,
+		ask_help = 0;
 	
 
 struct option longoptions[] = {
@@ -18,6 +19,7 @@ struct option longoptions[] = {
 	{"from-stdin", no_argument, 0, 'i'},
 	{"all-after", no_argument, 0, 'a'},
 	{"just-one", no_argument, 0, 'o'},
+	{"help", no_argument, 0, 'h'},
 	{0, 0, 0, 0}
 };
 
@@ -31,7 +33,7 @@ main (int argc, char **argv)
 	    range_starting_line,
 		range_required_lines;
 
-	while ((optc = getopt_long(argc, argv, "s:r:iao", longoptions, &optidx)) != -1)
+	while ((optc = getopt_long(argc, argv, "s:r:iaoh", longoptions, &optidx)) != -1)
 	{
 		switch (optc)
 		{
@@ -46,7 +48,7 @@ main (int argc, char **argv)
 				break;
 			
 			case 'i':
-			    make_true(o_switch);
+			    make_true(i_switch);
 				break;
 			
 			case 'a':
@@ -55,6 +57,11 @@ main (int argc, char **argv)
 			
 			case 'o':
 			    make_true(o_switch);
+				break;
+			
+			case 'h':
+			    make_true(ask_help);
+				break;
 		}
 	}
 }

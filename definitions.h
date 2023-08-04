@@ -1,8 +1,10 @@
 #include <stdio.h>
 
 #define make_true(x)        x = 1
+#define is_newln(c)         (c == '\n')
 
-typedef int flag;
+typedef unsigned int flag;
+
 
 void
 print_range (FILE *fp, int starting_line_number, int required_number_of_lines)
@@ -23,6 +25,27 @@ print_range (FILE *fp, int starting_line_number, int required_number_of_lines)
                 break;
             
             putchar (character);
+        }
+    }
+}
+
+
+void
+one_line (FILE *fp, int starting_line_number)
+{
+    char character;
+    int line_idx = 0;
+
+    while ((character = fgetc(fp)) != EOF)
+    {
+        if (is_newln(character))
+            line_idx++;
+        
+        if (line_idx == starting_line_number - 1)
+        {
+            // printf("T")
+
+            putchar(character);
         }
     }
 }
