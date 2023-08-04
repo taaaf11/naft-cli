@@ -9,7 +9,7 @@ static flag
 		r_switch = 0,
 		a_switch = 0,
 		o_switch = 0,
-		i_switch = 0,
+		f_switch = 0,
 		n_switch = 0,
 		ask_help = 0;
 	
@@ -19,7 +19,7 @@ struct option longoptions[] = {
 	{"required-lines", required_argument, 0, 'r'},
 	{"all-after", required_argument, 0, 'a'},
 	{"just-one", required_argument, 0, 'o'},
-	{"from-stdin", no_argument, 0, 'i'},
+	{"from-file", no_argument, 0, 'f'},
 	{"no-newline", no_argument, 0, 'n'},
 	{"help", no_argument, 0, 'h'},
 	{0, 0, 0, 0}
@@ -29,14 +29,15 @@ struct option longoptions[] = {
 int
 main (int argc, char **argv)
 {
-	char optc;
+	char optc,
+	     *file_name;
 
 	int optidx,
 	    range_starting_line,
 		range_required_lines,
 		line_start_a_o;
 
-	while ((optc = getopt_long(argc, argv, "s:r:a:o:inh", longoptions, &optidx)) != -1)
+	while ((optc = getopt_long(argc, argv, "s:r:a:o:f:nh", longoptions, &optidx)) != -1)
 	{
 		switch (optc)
 		{
@@ -60,8 +61,9 @@ main (int argc, char **argv)
 				line_start_a_o = atoi(optarg);
 				break;
 			
-			case 'i':
-			    make_true(i_switch);
+			case 'f':
+			    make_true(f_switch);
+				file_name = optarg;
 				break;
 			
 			case 'n':
