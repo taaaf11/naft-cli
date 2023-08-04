@@ -34,7 +34,7 @@ main (int argc, char **argv)
 
 	int optidx,
 	    range_starting_line,
-		range_required_lines,
+		range_ending_line,
 		line_start_a_o;
 
 	while ((optc = getopt_long(argc, argv, "s:r:a:o:f:nh", longoptions, &optidx)) != -1)
@@ -48,7 +48,7 @@ main (int argc, char **argv)
 			
 			case 'r':
 			    make_true(r_switch);
-				range_required_lines = atoi(optarg);
+				range_ending_line = atoi(optarg);
 				break;
 			
 			case 'a':
@@ -77,5 +77,43 @@ main (int argc, char **argv)
 	}
 
 	if (ask_help)
-	    print_usage(0);
+	    print_usage(0); // function auto-exits.
+	
+	if ((s_switch && !r_switch) || (!s_switch && r_switch))
+	    fprintf(stderr, "-s and -r switches with their respective long options are to be used together.\n");
+	
+	if (!f_switch)
+	{
+		if (a_switch)
+		    print_all_after(stdin, line_start_a_o);
+		
+		if (o_switch)
+		    print_one_line(stdin, line_start_a_o);
+		
+		if (s_switch && r_switch)
+		    print_range(stdin, range_starting_line, range_ending_line);
+		
+		if (!n_switch)
+		    trail_ln(1);
+		
+		return 0;
+	}
+
+	FILE *file = fopen(file_name, "r");
+
+	if (a_switch)
+		    print_all_after(stdin, line_start_a_o);
+		
+	if (o_switch)
+	    print_one_line(stdin, line_start_a_o);
+		
+	if (s_switch && r_switch)
+	    print_range(stdin, range_starting_line, range_ending_line);
+		
+	if (!n_switch)
+	    trail_ln(1);
+
+	fclose(file);
+
+	return 0;
 }

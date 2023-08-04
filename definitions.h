@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-#define make_true(x)        x = 1
-#define is_newln(c)         (c == '\n')
-#define trail_ln(y)         (y == 1) ? putchar('\n') : 0
+#define make_true(x)                x = 1
+#define is_newln(character)         (character == '\n')
+#define trail_ln(yes_or_no)         (yes_or_no == 1) ? putchar('\n') : 0
 
 typedef unsigned int flag;
 
