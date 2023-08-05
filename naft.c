@@ -80,7 +80,10 @@ main (int argc, char **argv)
 	    print_usage(0); // function auto-exits.
 	
 	if ((s_switch && !r_switch) || (!s_switch && r_switch))
+	{
 	    fprintf(stderr, "-s and -r switches with their respective long options are to be used together.\n");
+		exit(EXIT_FAILURE);
+	}
 	
 	if (!f_switch)
 	{
@@ -114,6 +117,5 @@ main (int argc, char **argv)
 	    trail_ln(1);
 
 	fclose(file);
-
 	return 0;
 }
