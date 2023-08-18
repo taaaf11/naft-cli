@@ -5,7 +5,7 @@
 void
 print_usage (int status)
 {
-    if (! (status == EXIT_SUCCESS) )
+    if (status != EXIT_SUCCESS)
     {
         fprintf(stderr, "USAGE: naft OPTION(S)\n"
                         "  or   naft OPTION(S) -f FILE \n\n");
@@ -28,7 +28,7 @@ print_usage (int status)
                     "    --ending-line,    -r <number>\t\tSpecify range (ending). Used with -s switch.\n"
                     "    --all-after,      -a <number>\t\tPrint all lines after given line.\n"
                     "    --just-one,       -o <number>\t\tPrint one line after the given line.\n"
-                    "    --from-file,      -f\t\t\tGet input from stdin instead of from stdin.\n"
+                    "    --from-file,      -f\t\t\tGet input from file instead of from stdin.\n"
                     "    --no-trailn,      -n\t\t\tDon't print trailing newline at the end of output (not the newline a file may have).\n"
                     "    --help,           -h\t\t\tPrint this help message.\n\n"
                     "Note: -s and -r switches and their respective long options are to be used together.\n");
