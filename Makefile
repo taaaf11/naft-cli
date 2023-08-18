@@ -9,3 +9,7 @@ install: naft
 
 clean:
 	rm -f naft a.out
+
+uninstall:
+	rm -f /home/$(USER)/.local/bin/naft
+
