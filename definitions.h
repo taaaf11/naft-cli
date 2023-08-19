@@ -103,3 +103,4 @@ print_all_after (FILE *fp, int given_line_number)
         prev_char = character;
     }
 }
+
