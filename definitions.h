@@ -41,7 +41,6 @@ print_range (FILE *fp, int starting_line_number, int required_ending_line_number
             
             putchar (character);
         }
-
         prev_char = character;
     }
 }
@@ -66,7 +65,6 @@ print_one_line (FILE *fp, int starting_line_number)
             
             putchar(character);
         }
-
         prev_char = character;
     }
 }
@@ -96,11 +94,8 @@ print_all_after (FILE *fp, int given_line_number)
                     continue;
                 }
             }
-
             putchar(character);
         }
-
         prev_char = character;
     }
 }
-
