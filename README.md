@@ -10,4 +10,3 @@ A simple program to print given lines of files plus additional features.
 
 ## Usage
 1. Run ``naft -h``
-

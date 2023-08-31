@@ -12,4 +12,3 @@ clean:
 
 uninstall:
 	rm -f /home/$(USER)/.local/bin/naft
-

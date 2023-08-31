@@ -90,7 +90,7 @@ main (int argc, char **argv)
 	if (ask_help)
 		print_usage(0); // function auto-exits.
 
-	if ((s_switch && !r_switch) || (!s_switch && r_switch))
+	if (s_switch ^ r_switch)
 	{
 		fprintf(stderr, "-s and -r switches should be used together.\n");
 		exit(EXIT_FAILURE);
@@ -130,4 +130,3 @@ main (int argc, char **argv)
 	fclose(file);
 	return 0;
 }
-
