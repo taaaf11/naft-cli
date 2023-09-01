@@ -8,7 +8,7 @@ typedef unsigned int flag;
 
 
 void
-print_range (FILE *fp, int starting_line_number, int required_ending_line_number)
+print_range (FILE *fp, int starting_line_number, int required_ending_line_number, int print_line_numbers_b)
 {
     int line_idx = 0,
         is_itr = 0, // used for preventing printing of unexpected newline at start of program,
@@ -32,8 +32,15 @@ print_range (FILE *fp, int starting_line_number, int required_ending_line_number
                 if (is_itr == 0)
                 {
                     is_itr++;
+                    (print_line_numbers_b) ? printf("%d: ", line_idx + 1) : 0;
                     continue;
                 }
+            }
+
+            if (print_line_numbers_b)
+            {
+                if (is_newln(prev_char))
+                    printf("%d: ", line_idx + 1);
             }
             
             if (line_idx == ending_line_number)
@@ -47,7 +54,7 @@ print_range (FILE *fp, int starting_line_number, int required_ending_line_number
 
 
 void
-print_one_line (FILE *fp, int starting_line_number)
+print_one_line (FILE *fp, int starting_line_number, int print_line_numbers_b)
 {
     char character,
          prev_char;
@@ -61,7 +68,10 @@ print_one_line (FILE *fp, int starting_line_number)
         if (line_idx == starting_line_number)
         {
             if (!is_newln(prev_char) && is_newln(character))
+            {
+                (print_line_numbers_b) ? printf("%d: ", line_idx + 1) : 0;
                 continue;
+            }
             
             putchar(character);
         }
@@ -71,7 +81,7 @@ print_one_line (FILE *fp, int starting_line_number)
 
 
 void
-print_all_after (FILE *fp, int given_line_number)
+print_all_after (FILE *fp, int given_line_number, int print_line_numbers_b)
 {
     char character,
          prev_char;
@@ -91,9 +101,17 @@ print_all_after (FILE *fp, int given_line_number)
                 if (is_itr == 0)
                 {
                     is_itr++;
+                    (print_line_numbers_b) ? printf("%d: ", line_idx + 1) : 0;
                     continue;
                 }
             }
+
+            if (print_line_numbers_b)
+            {
+                if (is_newln(prev_char))
+                    printf("%d: ", line_idx + 1);
+            }
+            
             putchar(character);
         }
         prev_char = character;

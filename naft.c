@@ -12,6 +12,7 @@ static flag
 		o_switch = 0, // 1 if -o is present; print one line at given line number.
 		f_switch = 0, // 1 if -f is present; get input from specified file instead of from stdin.
 		n_switch = 0, // 1 if -n is present; don't print trailing newline at end of output.
+		l_switch = 0, // 1 if -l is present; print line numbers.
 		ask_help = 0; // 1 if -h is present; help message.
 
 
@@ -22,6 +23,7 @@ struct option longoptions[] = {
 	{"just-one",      required_argument, 0, 'o'},
 	{"from-file",     required_argument, 0, 'f'},
 	{"no-trailn",     no_argument,       0, 'n'},
+	{"line-n",        no_argument,       0, 'l'},
 	{"help",          no_argument,       0, 'h'},
 	{NULL, 0, NULL, '\0'}
 };
@@ -38,7 +40,7 @@ main (int argc, char **argv)
 		range_ending_line,    // range_* variables used with -s and -r switches
 		line_start_a_o;       // used with -a and -o switches
 
-	while ((optc = getopt_long(argc, argv, "s:r:a:o:f:nh", longoptions, &optidx)) != -1)
+	while ((optc = getopt_long(argc, argv, "s:r:a:o:f:nlh", longoptions, &optidx)) != -1)
 	{
 		switch (optc)
 		{
@@ -76,6 +78,11 @@ main (int argc, char **argv)
 				make_true(n_switch);
 				make_true(aflag);
 				break;
+			
+			case 'l':
+				make_true(l_switch);
+				make_true(aflag);
+				break;
 
 			case 'h':
 				make_true(ask_help);
@@ -99,13 +106,13 @@ main (int argc, char **argv)
 	if (!f_switch)
 	{
 		if (a_switch)
-			print_all_after(stdin, line_start_a_o);
+			print_all_after(stdin, line_start_a_o, l_switch);
 
 		if (o_switch)
-			print_one_line(stdin, line_start_a_o);
+			print_one_line(stdin, line_start_a_o, l_switch);
 
 		if (s_switch && r_switch)
-			print_range(stdin, range_starting_line, range_ending_line);
+			print_range(stdin, range_starting_line, range_ending_line, l_switch);
 
 		if (!n_switch)
 			trail_ln(1);
@@ -116,13 +123,13 @@ main (int argc, char **argv)
 	FILE *file = fopen(file_name, "r");
 
 	if (a_switch)
-		print_all_after(file, line_start_a_o);
+		print_all_after(file, line_start_a_o, l_switch);
 
 	if (o_switch)
-		print_one_line(file, line_start_a_o);
+		print_one_line(file, line_start_a_o, l_switch);
 
 	if (s_switch && r_switch)
-		print_range(file, range_starting_line, range_ending_line);
+		print_range(file, range_starting_line, range_ending_line, l_switch);
 
 	if (!n_switch)
 		trail_ln(1);
