@@ -35,8 +35,8 @@ main (int argc, char **argv)
 
 	int optidx,
 		range_starting_line,
-		range_ending_line,
-		line_start_a_o;
+		range_ending_line,    // range_* flags used with -s and -r switches
+		line_start_a_o;       // used with -a and -o switches
 
 	while ((optc = getopt_long(argc, argv, "s:r:a:o:f:nh", longoptions, &optidx)) != -1)
 	{

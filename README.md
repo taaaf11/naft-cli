@@ -1,5 +1,5 @@
 # Naft
-A simple program to print given lines of files plus additional features.
+A simple program to print lines of files in given range, plus additional features.
 
 ## Installation
 1. Clone the repository or download the zip.
