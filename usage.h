@@ -16,6 +16,7 @@ print_usage (int status)
                         "    --just-one,       -o <number>\t\tPrint one line after the given line.\n"
                         "    --from-file,      -f\t\t\tGet input from file instead of from stdin.\n"
                         "    --no-trailn,      -n\t\t\tDon't print trailing newline at the end of output (not the newline a file may have).\n"
+                        "    --line-n,         -l\t\t\tPrint line numbers along with output.\n"
                         "    --help,           -h\t\t\tPrint this help message.\n\n"
                         "Note: -s and -r switches and their respective long options are to be used together.\n");
         exit(status);
@@ -30,6 +31,7 @@ print_usage (int status)
                     "    --just-one,       -o <number>\t\tPrint one line after the given line.\n"
                     "    --from-file,      -f\t\t\tGet input from file instead of from stdin.\n"
                     "    --no-trailn,      -n\t\t\tDon't print trailing newline at the end of output (not the newline a file may have).\n"
+                    "    --line-n,         -l\t\t\tPrint line numbers along with output.\n"
                     "    --help,           -h\t\t\tPrint this help message.\n\n"
                     "Note: -s and -r switches and their respective long options are to be used together.\n");
     exit(status);
