@@ -9,4 +9,7 @@ A simple program to print lines of files in given range, plus additional feature
 5. ``make install``
 
 ## Usage
-1. Run ``naft -h``
+![usage](https://github.com/tofi1130/naft-cli/assets/109919009/d299e6e4-664e-4177-9617-3fab6a069d65)
+
++ For more info, run the following command
+  ``naft -h``
