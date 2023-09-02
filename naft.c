@@ -1,3 +1,14 @@
+/*
+
+- Program Name: naft
+- Author: Muhammad Altaaf
+- Contact: taafuuu@gmail.com
+
+- Description: Program to print lines of files in given range.
+
+*/
+
+
 #include "definitions.h"
 #include "usage.h"
 
