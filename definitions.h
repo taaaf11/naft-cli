@@ -11,11 +11,10 @@ void
 print_range (FILE *fp, int starting_line_number, int required_ending_line_number, int print_line_numbers_b)
 {
     int line_idx = 0,
-        is_itr = 0, // used for preventing printing of unexpected newline at start of program,
+        is_itr = 0; // used for preventing printing of unexpected newline at start of program,
                     // caused by the <character> variable at the new_line, but there are characters before
                     // the new_line character at that line.
                     // see below
-        ending_line_number = starting_line_number + required_ending_line_number - 2;
 
     char character,
          prev_char;
@@ -43,7 +42,7 @@ print_range (FILE *fp, int starting_line_number, int required_ending_line_number
                     printf("%d: ", line_idx + 1);
             }
             
-            if (line_idx == ending_line_number)
+            if (line_idx == required_ending_line_number)
                 break;
             
             putchar (character);
